@@ -16,4 +16,13 @@ class Index extends \Magento\Backend\App\Action
         $this->_view->loadLayout();
         $this->_view->renderLayout();
     }
+
+
+    /**
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Elogic_Provider::create');
+    }
 }

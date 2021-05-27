@@ -34,4 +34,13 @@ class Delete extends \Magento\Backend\App\Action
         $resultRedirect = $this->resultRedirectFactory->create();
         return $resultRedirect->setPath('*/*/index', ['_current' => true]);
     }
+
+
+    /**
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Elogic_Provider::delete');
+    }
 }
