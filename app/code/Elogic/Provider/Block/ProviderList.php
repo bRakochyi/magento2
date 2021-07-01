@@ -24,7 +24,7 @@ class ProviderList extends \Magento\Framework\View\Element\Template
     /**
      * @param $count
      */
-    public function addContacts($count)
+    public function addProvider($count)
     {
         $_provider = $this->getData('provider');
         $actualNumber = count($_provider);
