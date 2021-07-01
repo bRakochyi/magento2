@@ -4,6 +4,7 @@ namespace Elogic\Provider\Model\Provider;
 
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Elogic\Provider\Model\ResourceModel\Provider\CollectionFactory;
 
 /**
  * Class DataProvider

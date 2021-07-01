@@ -1,13 +1,14 @@
 <?php
 
-namespace Elogic\Provider\Controller\Adminhtml\Test;
+namespace Elogic\Provider\Controller\Adminhtml\Delete;
 
 /**
  * Class Index
- * @package Elogic\Provider\Controller\Adminhtml\Test
+ * @package Elogic\Provider\Controller\Adminhtml\Delete
  */
 class Index extends \Magento\Backend\App\Action
 {
+
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|void
      */
@@ -23,6 +24,6 @@ class Index extends \Magento\Backend\App\Action
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Elogic_Provider::index');
+        return $this->_authorization->isAllowed('Elogic_Provider::delete');
     }
 }
