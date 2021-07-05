@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/elogicProvider/:blockId" method="GET">
+        <service class="Elogic\Provider\Api\ProviderRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Elogic_Provider::Provider"/>
+        </resources>
+    </route>
+    <route url="/V1/elogicProvider" method="POST">
+        <service class="Elogic\Provider\Api\ProviderRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elogic_Provider::Provider"/>
+        </resources>
+    </route>
+    <route url="/V1/elogicProvider/:id" method="PUT">
+        <service class="Elogic\Provider\Api\ProviderRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elogic_Provider::Provider"/>
+        </resources>
+    </route>
+    <route url="/V1/elogicProvider/:blockId" method="DELETE">
+        <service class="Elogic\Provider\Api\ProviderRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Elogic_Provider::Provider"/>
+        </resources>
+    </route>
+</routes>
