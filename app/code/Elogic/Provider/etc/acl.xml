@@ -1,11 +1,24 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Elogic_Provider::menu" title="Providers" sortOrder="10" >
-                    <resource id="Elogic_Provider::create" title="Create" sortOrder="50" />
-                    <resource id="Elogic_Provider::delete" title="Delete" sortOrder="100" />
+                <resource id="Elogic_Provider::provider" title="Provider" sortOrder="10">
+                    <resource id="Elogic_Provider::post" title="Posts" sortOrder="20"/>
+                    <resource id="Elogic_Provider::provider_configuration" title="Configuration" sortOrder="40" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Elogic_Provider::provider_config" title="Provider"/>
+                        </resource>
+                    </resource>
                 </resource>
             </resource>
         </resources>

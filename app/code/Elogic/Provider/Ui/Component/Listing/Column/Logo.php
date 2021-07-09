@@ -1,9 +1,15 @@
 <?php
-
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Ui\Component\Listing\Column;
 
-use Magento\Framework\View\Element\UiComponentFactory;
+use Magento\Backend\Model\UrlInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\View\Asset\Repository;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Ui\Component\Listing\Columns\Column;
 
@@ -13,25 +19,29 @@ use Magento\Ui\Component\Listing\Columns\Column;
  */
 class Logo extends Column
 {
-    const ALT_FIELD = 'title';
-
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
-    protected $storeManager;
+    private $storeManager;
 
     /**
-     * @var \Magento\Catalog\Helper\Image
+     * @var Repository
      */
-    protected $imageHelper;
-
+    private $assetRepo;
 
     /**
-     * Logo constructor.
+     * @var UrlInterface
+     */
+    private $_backendUrl;
+
+    /**
+     * GroupIcon constructor.
+     *
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
      * @param StoreManagerInterface $storeManager
-     * @param \Magento\Catalog\Helper\Image $imageHelper
+     * @param Repository $assetRepo
+     * @param UrlInterface $backendUrl
      * @param array $components
      * @param array $data
      */
@@ -39,54 +49,49 @@ class Logo extends Column
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
         StoreManagerInterface $storeManager,
-        \Magento\Catalog\Helper\Image $imageHelper,
+        Repository $assetRepo,
+        UrlInterface $backendUrl,
         array $components = [],
         array $data = []
     ) {
-        $this->storeManager = $storeManager;
-        $this->imageHelper = $imageHelper;
         parent::__construct($context, $uiComponentFactory, $components, $data);
+        $this->storeManager = $storeManager;
+        $this->assetRepo = $assetRepo;
+        $this->_backendUrl = $backendUrl;
     }
 
-
     /**
+     * Prepare Data Source
+     *
      * @param array $dataSource
      * @return array
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
+     * @noinspection PhpMissingReturnTypeInspection
      */
     public function prepareDataSource(array $dataSource)
     {
         if (isset($dataSource['data']['items'])) {
+            $path = $this->storeManager->getStore()->getBaseUrl(
+                    \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
+                ) . 'elogic_provider/tmp/feature/';
+            $baseImage = $this->assetRepo->getUrl('Elogic_Provider::images/provider.png');
             $fieldName = $this->getData('name');
-            foreach ($dataSource['data']['items'] as &$item) {
-                $url = '';
-                if (isset($item[$fieldName])) {
-                    if ($item[$fieldName] != '') {
-                        $url = $this->storeManager->getStore()->getBaseUrl(
-                                \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
-                            ) . "elogic/provider/provider" . $item[$fieldName];
-                    } else {
-                        $url = $this->imageHelper->getDefaultPlaceholderUrl('small_image');
-                    }
+            foreach ($dataSource['data']['items'] as & $item) {
+                if ($item[$fieldName]) {
+                    $item[$fieldName . '_src'] = $path . $item['image'];
+                    $item[$fieldName . '_alt'] = $item['name'];
+                    $item[$fieldName . '_orig_src'] = $path . $item['image'];
                 } else {
-                    $url = $this->imageHelper->getDefaultPlaceholderUrl('small_image');
+                    $item[$fieldName . '_src'] = $baseImage;
+                    $item[$fieldName . '_alt'] = 'provider';
+                    $item[$fieldName . '_orig_src'] = $baseImage;
                 }
-                $item[$fieldName . '_src'] = $url;
-                $item[$fieldName . '_alt'] = $this->getAlt($item) ?: '';
-                $item[$fieldName . '_orig_src'] = $url;
+                $item[$fieldName . '_link'] = $this->_backendUrl->getUrl(
+                    "provider/test/edit",
+                    ['post_id' => $item['post_id']]
+                );
             }
         }
         return $dataSource;
-    }
-
-
-    /**
-     * @param $row
-     * @return null
-     */
-    protected function getAlt($row)
-    {
-        $altField = $this->getData('config/altField') ?: self::ALT_FIELD;
-        return isset($row[$altField]) ? $row[$altField] : null;
     }
 }

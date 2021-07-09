@@ -1,14 +1,16 @@
 {
-  "elogic_providers": {
+  "elogic_provider": {
     "column": {
-      "id": true,
+      "post_id": true,
       "name": true,
       "description": true,
-      "date_added": true,
-      "logo": true
+      "status": true,
+      "image": true,
+      "created_at": true,
+      "updated_at": true
     },
     "index": {
-      "ELOGIC_PROVIDERS_CREATED_AT_UPDATED_AT_STATUS": true
+      "ELOGIC_PROVIDER_CREATED_AT_UPDATED_AT_STATUS": true
     },
     "constraint": {
       "PRIMARY": true

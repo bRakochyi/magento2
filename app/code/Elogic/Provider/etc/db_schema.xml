@@ -1,14 +1,31 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="elogic_providers" resource="default" engine="innodb" comment="List of Providers">
-        <column xsi:type="int" name="id" nullable="false" identity="true" comment="elogic_providers_id"/>
-        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
-        <column xsi:type="text" name="description" nullable="false" comment="Description"/>
-        <column xsi:type="timestamp" name="date_added" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Date Added"/>
-        <column xsi:type="text" name="logo" nullable="false" comment="Logo"/>
+    <table name="elogic_provider" resource="default" engine="innodb"
+           comment="Catalog Product Datetime Attribute Backend Table">
+        <column xsi:type="int" name="post_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Post ID"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="int" name="status" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <column xsi:type="text" name="image" nullable="true" comment="image"/>
+        <column xsi:type="timestamp" name="created_at" comment="created_at" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" comment="To" default="CURRENT_TIMESTAMP"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="id"/>
+            <column name="post_id"/>
         </constraint>
+
+        <index referenceId="ELOGIC_PROVIDER_STATUS_SORT_ORDER_TO_DATE_FROM_DATE" indexType="btree">
+            <column name="created_at"/>
+            <column name="updated_at"/>
+            <column name="status"/>
+        </index>
     </table>
 </schema>

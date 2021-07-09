@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Class DeleteButton
+ * @package Elogic\Provider\Block\Adminhtml\Provider\Edit
+ */
 namespace Elogic\Provider\Block\Adminhtml\Provider\Edit;
 
 /**

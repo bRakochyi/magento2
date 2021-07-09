@@ -1,7 +1,10 @@
 <?php
 
 namespace Elogic\Provider\Model\Attribute\Frontend;
-
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 use Magento\Eav\Model\Entity\Attribute\Frontend\AbstractFrontend;
 
 /**

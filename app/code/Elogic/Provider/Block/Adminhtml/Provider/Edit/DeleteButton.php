@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Block\Adminhtml\Provider\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
