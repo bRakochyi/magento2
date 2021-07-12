@@ -1,10 +1,9 @@
 <?php
-namespace Elogic\Provider\Api\Data;
 /**
- * Copyright © Magento, Inc. All rights reserved.
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
+namespace Elogic\Provider\Api\Data;
 /**
  * Interface ProviderInterface
  * @package Elogic\Provider\Api\Data

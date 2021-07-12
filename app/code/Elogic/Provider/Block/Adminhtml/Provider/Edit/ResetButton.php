@@ -1,7 +1,7 @@
 <?php
 /**
- * Class DeleteButton
- * @package Elogic\Provider\Block\Adminhtml\Provider\Edit
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
  */
 namespace Elogic\Provider\Block\Adminhtml\Provider\Edit;
 

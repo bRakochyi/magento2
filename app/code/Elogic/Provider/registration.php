@@ -1,7 +1,7 @@
 
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 \Magento\Framework\Component\ComponentRegistrar::register(
