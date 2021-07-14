@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Image Uploader
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Model;
 
@@ -20,18 +24,19 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Feature image uploader
+ *
  * Class ImageUploader
  * @package Elogic\Provider\Model
  */
 class ImageUploader
 {
     /**
-     *
+     * Constant for image/tmp/path
      */
     const IMAGE_TMP_PATH = 'elogic_provider/tmp/feature';
 
     /**
-     *
+     * Constant for image/path
      */
     const IMAGE_PATH = 'elogic_provider/feature';
 
@@ -136,10 +141,9 @@ class ImageUploader
      * Set base tmp path
      *
      * @param string $baseTmpPath
-     *
      * @return void
      */
-    public function setBaseTmpPath($baseTmpPath)
+    public function setBaseTmpPath($baseTmpPath): void
     {
         $this->baseTmpPath = $baseTmpPath;
     }
@@ -148,10 +152,9 @@ class ImageUploader
      * Set base path
      *
      * @param string $basePath
-     *
      * @return void
      */
-    public function setBasePath($basePath)
+    public function setBasePath($basePath): void
     {
         $this->basePath = $basePath;
     }
@@ -160,7 +163,6 @@ class ImageUploader
      * Set allowed extensions
      *
      * @param string[] $allowedExtensions
-     *
      * @return void
      */
     public function setAllowedExtensions($allowedExtensions)
@@ -170,10 +172,9 @@ class ImageUploader
 
     /**
      * Retrieve base tmp path
-     *
      * @return string
      */
-    public function getBaseTmpPath()
+    public function getBaseTmpPath(): string
     {
         return $this->baseTmpPath;
     }
@@ -183,7 +184,7 @@ class ImageUploader
      *
      * @return string
      */
-    public function getBasePath()
+    public function getBasePath(): string
     {
         return $this->basePath;
     }
@@ -191,9 +192,9 @@ class ImageUploader
     /**
      * Retrieve allowed extensions
      *
-     * @return string[]
+     * @return string|string[]
      */
-    public function getAllowedExtensions()
+    public function getAllowedExtensions(): string
     {
         return $this->allowedExtensions;
     }
@@ -203,11 +204,10 @@ class ImageUploader
      *
      * @param string $path
      * @param string $imageName
-     *
      * @return string
      * @noinspection PhpPureAttributeCanBeAddedInspection
      */
-    public function getFilePath($path, $imageName)
+    public function getFilePath($path, $imageName): string
     {
         return rtrim($path, '/') . '/' . ltrim($imageName, '/');
     }
@@ -216,13 +216,11 @@ class ImageUploader
      * Checking file for moving and move it
      *
      * @param string $imageName
-     *
      * @return string
-     *
      * @throws LocalizedException
      * @noinspection PhpMissingReturnTypeInspection
      */
-    public function moveFileFromTmp($imageName)
+    public function moveFileFromTmp($imageName): string
     {
         $baseTmpPath = $this->getBaseTmpPath();
         $basePath = $this->getBasePath();
@@ -259,13 +257,11 @@ class ImageUploader
      * Checking file for save and save it to tmp dir
      *
      * @param string $fileId
-     *
      * @return string[]
-     *
      * @throws LocalizedException
      * @noinspection PhpMissingReturnTypeInspection
      */
-    public function saveFileToTmpDir($fileId)
+    public function saveFileToTmpDir($fileId): array
     {
         $baseTmpPath = $this->getBaseTmpPath();
 

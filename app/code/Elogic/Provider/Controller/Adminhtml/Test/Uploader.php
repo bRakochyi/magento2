@@ -1,10 +1,13 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Uploader
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
-
 
 use Exception;
 use Elogic\Provider\Model\ImageUploader;
@@ -44,9 +47,8 @@ class Uploader extends Action implements HttpPostActionInterface
      * Upload file controller action
      *
      * @return ResultInterface
-     * @noinspection PhpMissingReturnTypeInspection
      */
-    public function execute()
+    public function execute(): object
     {
         try {
             $result = $this->imageUploader->saveFileToTmpDir('image');

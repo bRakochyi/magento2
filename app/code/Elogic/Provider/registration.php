@@ -1,8 +1,12 @@
 
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic registration
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,

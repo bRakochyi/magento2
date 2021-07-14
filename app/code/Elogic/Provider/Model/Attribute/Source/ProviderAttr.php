@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Uploader
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Model\Attribute\Source;
 
@@ -24,6 +28,7 @@ class ProviderAttr extends AbstractSource implements OptionSourceInterface, Sour
 
     /**
      * ProviderAttr constructor.
+     *
      * @param ProviderCollectionFactory $providerCollectionFactory
      */
     public function __construct(
@@ -34,6 +39,7 @@ class ProviderAttr extends AbstractSource implements OptionSourceInterface, Sour
 
     /**
      * Get all options
+     *
      * @return array
      */
     public function getAllOptions(): array

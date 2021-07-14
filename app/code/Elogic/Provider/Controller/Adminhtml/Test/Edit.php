@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Edit
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
@@ -27,7 +31,6 @@ class Edit extends \Elogic\Provider\Controller\Adminhtml\Test\Provider
      */
     protected $providerRepository;
 
-
     /**
      * Edit constructor.
      * @param Context $context
@@ -44,12 +47,15 @@ class Edit extends \Elogic\Provider\Controller\Adminhtml\Test\Provider
         parent::__construct($context);
     }
 
-    /** @noinspection PhpMissingReturnTypeInspection
-     *edit page
+    /**
+     * Edit page
+     *
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
+     * @var \Magento\Framework\Controller\ResultFactory $resultPage
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
 
         if ($postId = (int) $this->getRequest()->getParam('post_id')) {

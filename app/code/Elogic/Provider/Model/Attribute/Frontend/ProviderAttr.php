@@ -1,13 +1,14 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Uploader
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Model\Attribute\Frontend;
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
+
 use Magento\Eav\Model\Entity\Attribute\Frontend\AbstractFrontend;
 
 /**
@@ -17,6 +18,8 @@ use Magento\Eav\Model\Entity\Attribute\Frontend\AbstractFrontend;
 class ProviderAttr extends AbstractFrontend
 {
     /**
+     * Get attribute value
+     *
      * @param \Magento\Framework\DataObject $object
      * @return string
      */

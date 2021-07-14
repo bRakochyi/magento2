@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Generic Button
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Block\Adminhtml\Provider\Edit;
 
@@ -18,14 +22,12 @@ class GenericButton
      */
     protected $urlBuilder;
 
-
     /**
      * Registry
      *
      * @var \Magento\Framework\Registry
      */
     protected $registry;
-
 
     /**
      * GenericButton constructor.
@@ -40,7 +42,6 @@ class GenericButton
         $this->registry = $registry;
     }
 
-
     /**
      * @return null
      */
@@ -49,7 +50,6 @@ class GenericButton
         $provider = $this->registry->registry('provider');
         return $provider ? $provider->getId() : null;
     }
-
 
     /**
      * @param string $route

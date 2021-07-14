@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Provider Repository
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Model;
 
@@ -31,6 +35,7 @@ class ProviderRepository implements ProviderRepositoryInterface
 
     /**
      * ProviderRepository constructor.
+     *
      * @param ResourceProvider $resource
      * @param ProviderFactory $providerFactory
      */
@@ -42,7 +47,13 @@ class ProviderRepository implements ProviderRepositoryInterface
         $this->resource = $resource;
     }
 
-    /** @noinspection PhpMissingReturnTypeInspection */
+    /**
+     * Get id
+     *
+     * @param int $postId
+     * @return ProviderInterface|Provider
+     * @throws NoSuchEntityException
+     */
     public function get($postId)
     {
         $provider = $this->providerFactory->create();
@@ -56,13 +67,18 @@ class ProviderRepository implements ProviderRepositoryInterface
         return $provider;
     }
 
-    /** @noinspection PhpMissingReturnTypeInspection */
-    public function delete(ProviderInterface $provider)
+    /**
+     * Delete provider
+     *
+     * @param ProviderInterface $provider
+     * @return bool
+     * @throws CouldNotDeleteException
+     */
+    public function delete(ProviderInterface $provider): bool
     {
         try {
             $this->resource->delete($provider);
         } catch (\Exception $exception) {
-            /** @noinspection PhpUndefinedClassInspection */
             throw new CouldNotDeleteException(__(
                 'Could not delete the Faq: %1',
                 $exception->getMessage()
@@ -72,21 +88,28 @@ class ProviderRepository implements ProviderRepositoryInterface
     }
 
     /**
-     * @param $postId
+     * Delete with Id
+     *
+     * @param int $postId
      * @return bool
+     * @throws CouldNotDeleteException
+     * @throws NoSuchEntityException
      */
-    public function deleteById($postId)
+    public function deleteById($postId): bool
     {
-        /** @noinspection PhpUnhandledExceptionInspection */
-        /** @noinspection PhpParamsInspection */
         return $this->delete($this->get($postId));
     }
 
-    /** @noinspection PhpMissingReturnTypeInspection */
+    /**
+     * Save provider
+     *
+     * @param ProviderInterface $provider
+     * @return ProviderInterface
+     * @throws CouldNotSaveException
+     */
     public function save(ProviderInterface $provider)
     {
         try {
-            /** @noinspection PhpParamsInspection */
             $this->resource->save($provider);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));

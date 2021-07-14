@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic New Action
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
@@ -38,7 +42,7 @@ class NewAction extends Provider
      *
      * @return ResultInterface
      */
-    public function execute()
+    public function execute(): object
     {
         $resultForward = $this->resultForwardFactory->create();
         return $resultForward->forward('edit');

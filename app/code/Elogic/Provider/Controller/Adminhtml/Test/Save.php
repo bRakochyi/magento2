@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Save
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
@@ -62,10 +66,12 @@ class Save extends Provider
         parent::__construct($context);
     }
 
-    /** @noinspection PhpMissingReturnTypeInspection
-     * seve new or save edit
+    /**
+     * Save new or save edit
+     *
+     * @return Redirect|\Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
      */
-    public function execute()
+    public function execute(): object
     {
         /**
          * @var Redirect $resultRedirect
@@ -89,7 +95,7 @@ class Save extends Provider
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the FAQ.'));
             }
 
-            $this->dataPersistor->set('bohdan_vendor_vendor', $data);
+            $this->dataPersistor->set('elogic_provider_provider', $data);
             return $resultRedirect->setPath('*/*/edit', ['post_id' => $this->getRequest()->getParam('post_id')]);
         }
         return $resultRedirect->setPath('*/*/');
@@ -99,7 +105,7 @@ class Save extends Provider
      * @param array $rawData
      * @return array
      */
-    protected function _filterVendorData(array $rawData)
+    protected function _filterProviderData(array $rawData): array
     {
         $data = $rawData;
         if (isset($data['image'][0]['name'])) {

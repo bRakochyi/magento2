@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Logo
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Ui\Component\Listing\Column;
 
@@ -22,17 +26,17 @@ class Logo extends Column
     /**
      * @var StoreManagerInterface
      */
-    private $storeManager;
+    protected $storeManager;
 
     /**
      * @var Repository
      */
-    private $assetRepo;
+    protected $assetRepo;
 
     /**
      * @var UrlInterface
      */
-    private $_backendUrl;
+    protected $_backendUrl;
 
     /**
      * GroupIcon constructor.
@@ -68,7 +72,7 @@ class Logo extends Column
      * @throws NoSuchEntityException
      * @noinspection PhpMissingReturnTypeInspection
      */
-    public function prepareDataSource(array $dataSource)
+    public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
             $path = $this->storeManager->getStore()->getBaseUrl(

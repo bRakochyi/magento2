@@ -1,11 +1,16 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Delete Button
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Block\Adminhtml\Provider\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
+use Elogic\Provider\Block\Adminhtml\Provider\Edit\GenericButton;
 
 /**
  * Class DeleteButton
@@ -14,9 +19,11 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 class DeleteButton extends GenericButton implements ButtonProviderInterface
 {
     /**
+     * Retrieve button-specified settings
+     *
      * @return array
      */
-    public function getButtonData()
+    public function getButtonData(): array
     {
         $data = [];
         if ($this->getId()) {
@@ -33,9 +40,11 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
     }
 
     /**
+     * Get URL for delete button
+     *
      * @return string
      */
-    public function getDeleteUrl()
+    public function getDeleteUrl(): string
     {
         return $this->getUrl('*/*/delete', ['id' => $this->getId()]);
     }

@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Install Data
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Setup\Patch\Data;
 
@@ -39,6 +43,7 @@ class InstallData implements DataPatchInterface, PatchRevertableInterface
 
     /**
      * InstallData constructor.
+     *
      * @param ModuleDataSetupInterface $moduleDataSetup
      * @param EavSetupFactory $eavSetupFactory
      */
@@ -51,6 +56,8 @@ class InstallData implements DataPatchInterface, PatchRevertableInterface
     }
 
     /**
+     * Setup attribute
+     *
      * @return void
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Zend_Validate_Exception
@@ -72,7 +79,6 @@ class InstallData implements DataPatchInterface, PatchRevertableInterface
                 'input' => 'select',
                 'class' => '',
                 'source' => 'Elogic\Provider\Model\Attribute\Source\ProviderAttr',
-                /* Source of select type custom attribute options*/
                 'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
                 'visible' => true,
                 'required' => false,
@@ -96,7 +102,6 @@ class InstallData implements DataPatchInterface, PatchRevertableInterface
     public function revert()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
-        /** @var EavSetup $eavSetup */
         $eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
         $eavSetup->removeAttribute(Product::ENTITY, self::PRODUCT_ATTRIBUTE);
 

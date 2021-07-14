@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Provider Actions
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Ui\Component\Listing\Column;
 
@@ -64,7 +68,7 @@ class ProviderActions extends Column
      * @return array
      * @noinspection PhpMissingReturnTypeInspection
      */
-    public function prepareDataSource(array $dataSource)
+    public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
@@ -85,7 +89,6 @@ class ProviderActions extends Column
                 }
             }
         }
-
         return $dataSource;
     }
 }

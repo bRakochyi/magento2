@@ -1,14 +1,19 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Provider Interface
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Api\Data;
+
 /**
  * Interface ProviderInterface
  * @package Elogic\Provider\Api\Data
  */
-interface ProviderInterface extends \Magento\Framework\Api\CustomAttributesDataInterface
+interface ProviderInterface
 {
     /**
      * Constant for column's name "post_id" in table elogic_provider
@@ -45,83 +50,65 @@ interface ProviderInterface extends \Magento\Framework\Api\CustomAttributesDataI
      */
     const UPDATED_AT = 'updated_at';
     /**
+     * Return provider id
      *
      * @return int|null
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function getPostId();
 
     /**
      * @param int $postId
      * @return $this
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function setPostId($postId);
 
     /**
-     * Returns vendor name
+     * Returns provider name
      *
      * @return string
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function getName();
 
     /**
      * @param string $name
      * @return $this
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function setName($name);
 
     /**
-     * Returns vendor description
+     * Return provider description
      *
      * @return string|null
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function getDescription();
 
     /**
      * @param string $description
      * @return $this
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function setDescription($description);
 
     /**
-     * Returns vendor activity flag
+     * Returns provider activity flag
      *
      * @return int
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function getIsActive();
 
     /**
      * @param int $isActive
      * @return $this
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function setIsActive($isActive);
 
     /**
      * Returns rule condition
-     * @since 100.1.0
      */
     public function getImage();
 
     /**
      * @param $image
      * @return $this
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function setImage($image);
 
@@ -129,16 +116,12 @@ interface ProviderInterface extends \Magento\Framework\Api\CustomAttributesDataI
      * Returns stop rule processing flag
      *
      * @return int|null
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function getCreatedAt();
 
     /**
      * @param int $createdAt
      * @return $this
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function setCreatedAt($createdAt);
 
@@ -146,16 +129,12 @@ interface ProviderInterface extends \Magento\Framework\Api\CustomAttributesDataI
      * Returns rule sort order
      *
      * @return int|null
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function getUpdatedAt();
 
     /**
      * @param int $updatedAt
      * @return $this
-     * @since 100.1.0
-     * @noinspection PhpMissingReturnTypeInspection
      */
     public function setUpdatedAt($updatedAt);
 

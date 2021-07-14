@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Data Provider
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Model\Provider;
 
@@ -17,23 +21,24 @@ use Magento\Store\Model\StoreManagerInterface;
 class DataProvider extends AbstractDataProvider
 {
     /**
-     * @var
+     * @return array
      */
     protected $loadedData;
 
     /**
      * @var DataPersistorInterface
      */
-    private $dataPersistor;
+    protected $dataPersistor;
 
     /**
      * @var StoreManagerInterface
      */
     protected $storeManager;
 
-
+    /**
+     * @var \Elogic\Provider\Model\ResourceModel\Provider\Collection
+     */
     public $collection;
-
 
     /**
      * DataProvider constructor.
@@ -68,9 +73,8 @@ class DataProvider extends AbstractDataProvider
      * Get data
      *
      * @return array
-     * @noinspection PhpMissingReturnTypeInspection
      */
-    public function getData()
+    public function getData(): array
     {
         if (isset($this->loadedData)) {
             return $this->loadedData;
@@ -98,9 +102,12 @@ class DataProvider extends AbstractDataProvider
     }
 
     /**
-     * @noinspection PhpMissingReturnTypeInspection
+     * Get media URL
+     *
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getMediaUrl()
+    public function getMediaUrl(): string
     {
         $mediaUrl = $this->storeManager->getStore()
                 ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'elogic_provider/tmp/feature/';

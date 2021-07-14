@@ -1,15 +1,20 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Delete
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
 use Magento\Backend\App\Action\Context;
-use Elogic\Provider\Model\Provider as Provider;
+use Elogic\Provider\Model\Provider;
 use Magento\Framework\Controller\ResultInterface;
 use Elogic\Provider\Api\ProviderRepositoryInterface;
-
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
 /**
  * Class Delete
  * @package Elogic\Provider\Controller\Adminhtml\Test
@@ -23,6 +28,7 @@ class Delete extends \Elogic\Provider\Controller\Adminhtml\Test\Provider
 
     /**
      * Delete constructor.
+     *
      * @param Context $context
      * @param ProviderRepositoryInterface $providerRepositoryInterface
      */
@@ -34,9 +40,10 @@ class Delete extends \Elogic\Provider\Controller\Adminhtml\Test\Provider
         parent::__construct($context);
     }
 
-
-    /** @noinspection PhpMissingReturnTypeInspection */
-    public function execute()
+    /**
+     * @return ResponseInterface|Redirect|ResultInterface
+     */
+    public function execute(): object
     {
         $resultRedirect = $this->resultRedirectFactory->create();
         $id = $this->getRequest()->getParam('post_id');

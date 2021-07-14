@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Mass Delete
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
@@ -11,5 +15,8 @@ namespace Elogic\Provider\Controller\Adminhtml\Test;
  */
 abstract class Provider extends \Magento\Backend\App\Action
 {
+    /**
+     * Constant for resource Elogic_Provider
+     */
     const ADMIN_RESOURCE = 'Elogic_Provider::Provider';
 }

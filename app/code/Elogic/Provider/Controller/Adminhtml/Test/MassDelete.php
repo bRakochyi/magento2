@@ -1,7 +1,11 @@
 <?php
 /**
- * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Elogic Mass Delete
+ *
+ * @category Elogic
+ * @Package Elogic/Provider
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
  */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
@@ -43,8 +47,10 @@ class MassDelete extends Action
         parent::__construct($context);
     }
 
-    /** @noinspection PhpMissingReturnTypeInspection
-     * delete providers
+    /**
+     * Mass delete providers
+     *
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
@@ -63,9 +69,7 @@ class MassDelete extends Action
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }
-        /**
-         * @noinspection PhpPossiblePolymorphicInvocationInspection
-         */
+
         return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('provider/test/index');
     }
 }
