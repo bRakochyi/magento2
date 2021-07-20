@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic Acl
+ *
+ * @category Elogic
+ * @Package Elogic/Customers
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Elogic_Customers::customers" title="Customers" sortOrder="10">
+                    <resource id="Elogic_Customers::post" title="Posts" sortOrder="20"/>
+                    <resource id="Elogic_Customers::customers_configuration" title="Configuration" sortOrder="40" />
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Elogic_Customers::customers_config" title="Customers"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

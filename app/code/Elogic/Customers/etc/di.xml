@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic Di
+ *
+ * @category Elogic
+ * @Package Elogic/Customers
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Elogic\Customers\Api\CustomersRepositoryInterface" type="Elogic\Customers\Model\CustomersRepository"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="customers_index_listing_data_source" xsi:type="string">ElogicCustomersCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="ElogicCustomersCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elogic_customers</argument>
+            <argument name="resourceModel" xsi:type="string">Elogic\Customers\Model\ResourceModel\Customers</argument>
+        </arguments>
+    </virtualType>
+    <type name="Elogic\Customers\Controller\Adminhtml\Index\Uploader">
+        <arguments>
+            <argument name="photoUploader" xsi:type="object">Elogic\Customers\ReferencePhotoUpload</argument>
+        </arguments>
+    </type>
+    <virtualType name="Elogic\Customers\ReferencePhotoUpload" type="Elogic\Customers\Model\PhotoUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">elogic_customers/tmp/feature</argument>
+            <argument name="basePath" xsi:type="string">elogic_customers/feature</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">photo/jpg</item>
+                <item name="jpeg" xsi:type="string">photo/jpeg</item>
+                <item name="gif" xsi:type="string">photo/gif</item>
+                <item name="png" xsi:type="string">photo/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic Adminhtml Menu
+ *
+ * @category Elogic
+ * @Package Elogic/Customers
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Elogic_Customers" title="Elogic Customers" module="Elogic_Customers" sortOrder="20" dependsOnModule="Elogic_Customers" resource="Elogic_Customers::customers"/>
+        <add id="Elogic_Customers::index" title="Customers" module="Elogic_Customers" action="customers/index/index" parent="Elogic_Customers" sortOrder="20" dependsOnModule="Elogic_Customers" resource="Elogic_Customers::customers"/>
+    </menu>
+</config>
