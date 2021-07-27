@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic Customers Newaction
+ *
+ * @category Elogic
+ * @Package Elogic/Customers
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customers_index_edit"/>
+    <body/>
+</page>

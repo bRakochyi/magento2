@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic DB Schema
+ *
+ * @category Elogic
+ * @Package Elogic/Customers
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="elogic_customers" resource="default" engine="innodb" comment="Table for Elogic Customers">
+        <column xsi:type="int" name="customer_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Customer ID"/>
+        <column xsi:type="varchar" name="first_name" nullable="true" length="255" comment="First Name"/>
+        <column xsi:type="varchar" name="last_name" nullable="true" length="255" comment="Last Name"/>
+        <column xsi:type="varchar" name="email" nullable="true" length="255" comment="Email"/>
+        <column xsi:type="varchar" name="login" nullable="true" length="255" comment="Login"/>
+        <column xsi:type="varchar" name="password" nullable="true" length="128" comment="Password"/>
+        <column xsi:type="varchar" name="country" nullable="true" length="255" comment="Country"/>
+        <column xsi:type="varchar" name="city" nullable="true" length="255" comment="City"/>
+        <column xsi:type="varchar" name="phone" nullable="true" length="255" comment="Phone"/>
+        <column xsi:type="timestamp" name="created_at" comment="Created at" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" comment="Update at" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="text" name="photo" nullable="true" comment="Photo"/>
+        <column xsi:type="int" name="status" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="customer_id"/>
+        </constraint>
+
+        <index referenceId="ELOGIC_CUSTOMERS_STATUS_SORT_ORDER_TO_DATE_FROM_DATE" indexType="btree">
+            <column name="created_at"/>
+            <column name="updated_at"/>
+            <column name="status"/>
+        </index>
+    </table>
+</schema>
