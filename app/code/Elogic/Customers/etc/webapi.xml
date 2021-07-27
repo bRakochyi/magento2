@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic Webapi
+ *
+ * @category Elogic
+ * @Package Elogic/Customers
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/elogicCustomers/:blockId" method="GET">
+        <service class="Elogic\Customers\Api\CustomersRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Elogic_Customers::Customers"/>
+        </resources>
+    </route>
+    <route url="/V1/elogicCustomers" method="POST">
+        <service class="Elogic\Customers\Api\CustomersRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elogic_Customers::Customers"/>
+        </resources>
+    </route>
+    <route url="/V1/elogicCustomers/:id" method="PUT">
+        <service class="Elogic\Customers\Api\CustomersRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Elogic_Customers::Customers"/>
+        </resources>
+    </route>
+    <route url="/V1/elogicCustomers/:blockId" method="DELETE">
+        <service class="Elogic\Customers\Api\CustomersRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Elogic_Customers::Customers"/>
+        </resources>
+    </route>
+</routes>

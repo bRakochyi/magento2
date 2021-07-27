@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic Module
+ *
+ * @category Elogic
+ * @Package Elogic/Customers
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Elogic
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Elogic_Customers">
+        <sequence>
+            <module name="Magento_Cms"/>
+        </sequence>
+    </module>
+</config>
