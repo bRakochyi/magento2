@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Module
+ *
+ * @category Magento
+ * @Package Magento/Practice
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Magento
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Magento_Practice" setup_version="1.1.0">
+    </module>
+</config>
