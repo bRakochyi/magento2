@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento View Frontend Layout Display
+ *
+ * @category Magento
+ * @Package Magento/Practice
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Magento
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Practice\Block\Display" name="practice_display"
+                   template="Magento_Practice::sayhello.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
