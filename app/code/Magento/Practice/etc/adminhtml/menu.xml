@@ -12,7 +12,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Magento_Practice::practice" title="Magento Practice" module="Magento_Practice" sortOrder="51" resource="Magento_Practice::practice"/>
-        <add id="Magento_Practice::post" title="Manage Posts" module="Magento_Practice" sortOrder="10" action="practice/post/index" resource="Magento_Practice::post" parent="Magento_Practice::practice"/>
+        <add id="Magento_Practice::post" title="Posts" module="Magento_Practice" sortOrder="10" action="magento_practice/post/index" resource="Magento_Practice::post" parent="Magento_Practice::practice"/>
         <add id="Magento_Practice::configuration" title="Configuration" module="Magento_Practice" sortOrder="99" parent="Magento_Practice::practice" action="adminhtml/system_config/edit/section/practice" resource="Magento_Practice::configuration"/>
     </menu>
 </config>

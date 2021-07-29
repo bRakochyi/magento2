@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Di
+ *
+ * @category Magento
+ * @Package Magento/Practice
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Magento
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magento_practice_post_listing_data_source" xsi:type="string">Magento\Practice\Model\ResourceModel\Post\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Practice\Controller\Index\Example">
+        <plugin name="Magento_Practice_Plugin" type="Magento\Practice\Plugin\ExamplePlugin" sortOrder="10" disabled="false"  />
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="exampleSayHello" xsi:type="object">Magento\Practice\Console\SayHello</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magento\Practice\Model\ResourceModel\Post\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magento_practice_post</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Practice\Model\ResourceModel\Post</argument>
+        </arguments>
+    </virtualType>
+</config>
