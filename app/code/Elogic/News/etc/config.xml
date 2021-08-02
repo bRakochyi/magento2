@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic Config
+ *
+ * @category Elogic
+ * @Package Elogic/News
+ * @copyright 2021 Elogic
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <news>
+            <general>
+                <enable_in_frontend>1</enable_in_frontend>
+                <head_title>News</head_title>
+                <lastest_news_position>1</lastest_news_position>
+            </general>
+        </news>
+    </default>
+</config>

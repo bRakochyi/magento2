@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic News
+ *
+ * @category Elogic
+ * @Package Elogic/News
+ * @copyright 2021 Elogic
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Elogic_News::css/style.css" />
+    </head>
+</page>

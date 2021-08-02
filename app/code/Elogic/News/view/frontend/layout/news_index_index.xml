@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic News Index
+ *
+ * @category Elogic
+ * @Package Elogic/News
+ * @copyright 2021 Elogic
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="news_news" />
+    <body>
+        <referenceContainer name="content">
+            <block class="Elogic\News\Block\NewsList"
+                   name="elogic_news_news_list"
+                   template="Elogic_News::list.phtml" />
+        </referenceContainer>
+    </body>
+</page>
