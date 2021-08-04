@@ -24,17 +24,22 @@ use Magento\Framework\Exception\NoSuchEntityException;
 class NewsRepository implements NewsRepositoryInterface
 {
     /**
+     * Property for ResourceModel News
+     *
      * @var ResourceNews
      */
     protected $resource;
 
     /**
+     * Property for News Factory
+     *
      * @var NewsFactory
      */
     protected $newsFactory;
 
     /**
      * NewRepository construct
+     *
      * @param ResourceNews $resource
      * @param NewsFactory $newsFactory
      */

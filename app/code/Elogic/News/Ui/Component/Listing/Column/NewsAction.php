@@ -21,11 +21,15 @@ use Magento\Framework\UrlInterface;
 class NewsAction extends Column
 {
     /**
+     * Property for UrlInterface
+     *
      * @var UrlInterface
      */
     protected $_urlBuilder;
 
     /**
+     * Property for View Url
+     *
      * @var string
      */
     protected $_viewUrl;
@@ -48,7 +52,7 @@ class NewsAction extends Column
         array $data = []
     ) {
         $this->_urlBuilder = $urlBuilder;
-        $this->_viewUrl    = $viewUrl;
+        $this->_viewUrl = $viewUrl;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -80,7 +84,6 @@ class NewsAction extends Column
                 ];
             }
         }
-
         return $dataSource;
     }
 }

@@ -23,27 +23,36 @@ use Magento\Store\Model\StoreManagerInterface;
 class DataProvider extends AbstractDataProvider
 {
     /**
+     * Property for Load Data
+     *
      * @return array
      */
     protected $loadedData;
 
     /**
+     * Property for DataPersistorInterface
+     *
      * @var DataPersistorInterface
      */
     protected $dataPersistor;
 
     /**
+     * Property for StoreManagerInterface
+     *
      * @var StoreManagerInterface
      */
     protected $storeManager;
 
     /**
+     * Property for News Collection
+     *
      * @var Collection
      */
     public $collection;
 
     /**
-     * DataProvider constructor.
+     * DataProvider constructor
+     *
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
@@ -83,16 +92,13 @@ class DataProvider extends AbstractDataProvider
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
         }
-
         $data = $this->dataPersistor->get('elogic_news_news');
-
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
             $this->dataPersistor->clear('elogic_news_news');
         }
-
         return $this->loadedData;
     }
 }

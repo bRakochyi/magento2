@@ -65,7 +65,7 @@ class News extends AbstractModel implements NewsInterface
      *
      * @return string
      */
-    public function getNewsTitle(): string
+    public function getNewsTitle()
     {
         return $this->getData(self::NEWS_TITLE);
     }
@@ -86,7 +86,7 @@ class News extends AbstractModel implements NewsInterface
      *
      * @return string
      */
-    public function getLink(): string
+    public function getLink()
     {
         return $this->getData(self::LINK);
     }

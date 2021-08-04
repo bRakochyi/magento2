@@ -9,8 +9,8 @@
 namespace Elogic\News\Block;
 
 use Magento\Framework\Data\Collection\AbstractDb;
-use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Magento\Framework\View\Element\Template;
 use Elogic\News\Model\NewsFactory;
 use Magento\Theme\Block\Html\Pager;
@@ -23,12 +23,14 @@ use Magento\Theme\Block\Html\Pager;
 class NewsList extends Template
 {
     /**
+     * News Factory Model
+     *
      * @var NewsFactory
      */
     protected $_newsFactory;
 
     /**
-     * NewsList construct
+     * Block NewsList construct
      *
      * @param Template\Context $context
      * @param NewsFactory $newsFactory
@@ -44,9 +46,12 @@ class NewsList extends Template
     }
 
     /**
+     * Get News Collection
+     *
      * @return AbstractDb|AbstractCollection|null
      */
-    public function getNewsCollection(){
+    public function getNewsCollection()
+    {
         $news = $this->_newsFactory->create();
         return $news->getCollection();
     }
@@ -84,4 +89,5 @@ class NewsList extends Template
     {
         return $this->getChildHtml('pager');
     }
+
 }

@@ -25,11 +25,15 @@ use Magento\Framework\View\Result\PageFactory;
 class Edit extends News
 {
     /**
+     * Property for Page Factory
+     *
      * @var PageFactory
      */
     protected $resultPageFactory;
 
     /**
+     * Property for News Repository Model
+     *
      * @var NewsRepository
      */
     protected $newsRepository;
@@ -60,17 +64,13 @@ class Edit extends News
      */
     public function execute()
     {
-
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-
         if ($id = (int) $this->getRequest()->getParam('news_id')) {
             try {
                 $news = $this->newsRepository->get($id);
-
                 $resultPage->getConfig()->getTitle()->prepend(__($news->getNewsTitle()));
             } catch (NoSuchEntityException $e) {
                 $this->messageManager->addErrorMessage(__('This News no longer exists.'));
-
                 return $this->_redirect('*/*/index');
             }
         } else {

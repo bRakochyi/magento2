@@ -52,10 +52,9 @@ class Index extends News
         $breadcrumbs->addCrumb('news',
             [
                 'label' => __('News Section'),
-                'title' => __('News Section')
+                'title' => __('News Section'),
             ]
         );
-
         return $pageFactory;
     }
 }

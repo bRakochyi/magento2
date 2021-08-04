@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Elogic MassDelete
+ *
+ * @category Elogic
+ * @Package Elogic/News
+ * @copyright 2021 Elogic
+ */
 namespace Elogic\News\Controller\Adminhtml\Index;
 
 use Elogic\News\Model\ResourceModel\News\CollectionFactory;
@@ -11,14 +17,23 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
 
+/**
+ * Class MassDelete
+ *
+ * @package Elogic\News\Controller\Adminhtml\Index
+ */
 class MassDelete extends Action
 {
     /**
+     * Property for Ui Component Filter
+     *
      * @var Filter
      */
     protected $filter;
 
     /**
+     * Property for Collection Factory
+     *
      * @var CollectionFactory
      */
     protected $collectionFactory;

@@ -27,11 +27,15 @@ use Magento\Framework\Exception\LocalizedException;
 class Save extends News
 {
     /**
+     * Property for News Factory Model
+     *
      * @var NewsFactory
      */
     protected $newsFactory;
 
     /**
+     * Property for DataPersistorInterface
+     *
      * @var DataPersistorInterface
      *
      * @return void
@@ -39,6 +43,8 @@ class Save extends News
     protected $dataPersistor;
 
     /**
+     * Property for NewsRepositoryInterface
+     *
      * @var NewsRepositoryInterface
      */
     protected $newsRepositoryInterface;
@@ -72,6 +78,8 @@ class Save extends News
     public function execute(): object
     {
         /**
+         * Variable for Redirect
+         *
          * @var Redirect $resultRedirect
          */
         $resultRedirect = $this->resultRedirectFactory->create();

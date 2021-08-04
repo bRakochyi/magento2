@@ -16,19 +16,22 @@ use Magento\Framework\View\Result\PageFactory;
 use Magento\Backend\App\Action;
 
 /**
- * Class Index
+ * Class Adminhtml Index
  *
  * @package Elogic\News\Controller\Adminhtml\Index
  */
 class Index extends Action
 {
     /**
+     * Property for Page Factory
+     *
      * @var PageFactory
      */
     protected $resultPageFactory;
 
     /**
-     * Index constructor.
+     * Index constructor
+     *
      * @param Context $context
      * @param PageFactory $resultPageFactory
      */
@@ -41,12 +44,14 @@ class Index extends Action
     }
 
     /**
+     * Index page for admin menu
+     *
      * @return Page|ResultInterface
      */
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend(__('News'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Elogic'));
 
         return $resultPage;
     }

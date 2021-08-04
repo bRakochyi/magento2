@@ -70,7 +70,7 @@ interface NewsInterface
      *
      * @return string
      */
-    public function getNewsTitle(): string;
+    public function getNewsTitle();
 
     /**
      * Change news title
@@ -85,7 +85,7 @@ interface NewsInterface
      *
      * @return string
      */
-    public function getLink(): string;
+    public function getLink();
 
     /**
      * Change link

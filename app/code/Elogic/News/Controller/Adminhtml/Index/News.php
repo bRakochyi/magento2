@@ -12,6 +12,7 @@ use Magento\Backend\App\Action;
 
 /**
  * Abstract Class News
+ *
  * @package Elogic\News\Controller\Adminhtml\Index
  */
 abstract class News extends Action

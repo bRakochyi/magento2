@@ -36,11 +36,15 @@ class Data extends AbstractHelper
     const XML_PATH_LASTEST_NEWS = 'news/general/lastest_news_block_position';
 
     /**
+     * Property for ScopeConfigInterface
+     *
      * @var ScopeConfigInterface
      */
     protected $_scopeConfig;
 
     /**
+     * Data construct
+     *
      * @param Context $context
      * @param ScopeConfigInterface $scopeConfig
      */

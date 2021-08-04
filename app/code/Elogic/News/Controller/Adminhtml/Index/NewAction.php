@@ -20,12 +20,15 @@ use Magento\Framework\Controller\ResultInterface;
 class NewAction extends News
 {
     /**
+     * Property for Forward Factory
+     *
      * @var ForwardFactory
      */
     protected $resultForwardFactory;
 
     /**
-     * NewAction constructor.
+     * NewAction constructor
+     *
      * @param Context $context
      * @param ForwardFactory $resultForwardFactory
      */

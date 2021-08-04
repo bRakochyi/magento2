@@ -27,16 +27,22 @@ use Elogic\News\Model\NewsFactory;
 class News extends Action
 {
     /**
+     * Property for Page Factory
+     *
      * @var PageFactory
      */
     protected $_pageFactory;
 
     /**
+     * Property for Elogic Helper Data
+     *
      * @var Data
      */
     protected $_dataHelper;
 
     /**
+     * Property for News Factory
+     *
      * @var NewsFactory
      */
     protected $_newsFactory;
@@ -79,8 +85,13 @@ class News extends Action
         }
     }
 
+    /**
+     * Execute page
+     *
+     * @return ResultInterface|Page
+     */
     public function execute()
     {
-        // TODO: Implement execute() method.
+        return $this->_pageFactory->create();
     }
 }

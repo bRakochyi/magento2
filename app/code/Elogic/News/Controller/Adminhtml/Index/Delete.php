@@ -25,6 +25,8 @@ use Magento\Framework\Controller\Result\Redirect;
 class Delete extends News
 {
     /**
+     * Property for Api NewsRepositoryInterface
+     *
      * @var NewsRepositoryInterface
      */
     protected $newsRepositoryInterface;
