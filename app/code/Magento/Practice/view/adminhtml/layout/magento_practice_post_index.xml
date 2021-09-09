@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento View Adminhtml Layout Post Index
+ *
+ * @category Magento
+ * @Package Magento/Practice
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Magento
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="magento_practice_post_listing"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Adminhtml Routes
+ *
+ * @category Magento
+ * @Package Magento/Practice
+ * @author Bohdan Rakochyi
+ * @copyright 2021 Magento
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="magento_practice" frontName="magento_practice">
+            <module name="Magento_Practice"/>
+        </route>
+    </router>
+</config>

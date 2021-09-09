@@ -1,0 +1,37 @@
+<div>
+    <?php
+    /**
+     * Elogic Frontend Template List
+     *
+     * @category Elogic
+     * @Package Elogic/News
+     * @copyright 2021 Elogic
+     */
+
+    /** @var NewsList $block */
+
+    use Elogic\News\Block\NewsList;
+
+    $newsCollection = $block->getNewsCollection() ;
+    if ($newsCollection->getSize() > 0) :
+        ?>
+        <ul>
+            <?php foreach ($newsCollection as $news) : ?>
+                <li>
+                    <div>
+                        <?php echo $news->getNewsTitle() ?>
+                    </div>
+                    <div>
+                        <a href="<?php echo $news->getLink() ?>">Link to this news</a>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+            <div>
+                <?php echo $block->getPagerHtml(); ?>
+            </div>
+
+    <?php else : ?>
+        <p><?php echo __('Have no article!') ?></p>
+    <?php endif; ?>
+</div>

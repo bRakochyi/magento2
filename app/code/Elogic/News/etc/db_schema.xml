@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic DB Schema
+ *
+ * @category Elogic
+ * @Package Elogic/News
+ * @copyright 2021 Elogic
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="elogic_news" resource="default" engine="innodb" comment="Table for News">
+        <column xsi:type="int" name="news_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="News ID"/>
+        <column xsi:type="timestamp" name="created_at" comment="Created at" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="varchar" name="news_title" nullable="true" length="255" comment="News Title"/>
+        <column xsi:type="varchar" name="link" nullable="true" length="1000" comment="Link"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="news_id"/>
+        </constraint>
+
+        <index referenceId="ELOGIC_NEWS_STATUS_SORT_ORDER_TO_DATE_FROM_DATE" indexType="btree">
+            <column name="created_at"/>
+        </index>
+    </table>
+</schema>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Elogic Widget
+ *
+ * @category Elogic
+ * @Package Elogic/News
+ * @copyright 2021 Elogic
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Elogic\News\Block\Widget\News" id="elogic_news">
+        <label>Elogic News Widget</label>
+        <description>News Widget</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
+                <label>News</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

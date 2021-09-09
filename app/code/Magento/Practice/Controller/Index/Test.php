@@ -11,6 +11,8 @@ namespace Magento\Practice\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\DataObject;
+use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
@@ -39,11 +41,13 @@ class Test extends Action
     }
 
     /**
-     * @return void
+     * @return Page
      */
     public function execute()
     {
-        echo "Hello";
-        exit;
+        $textDisplay = new DataObject(array('text' => 'Magento'));
+        $this->_eventManager->dispatch('magento_practice_display_text', ['mp_text' => $textDisplay]);
+        echo $textDisplay->getText();
+        return $this->_pageFactory->create();
     }
 }
