@@ -1,26 +1,30 @@
 <?php
-
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Model\Provider;
 
-use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Ui\DataProvider\AbstractDataProvider;
 use Elogic\Provider\Model\ResourceModel\Provider\CollectionFactory;
+use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Class DataProvider
  * @package Elogic\Provider\Model\Provider
  */
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
     /**
-     * @var \Elogic\Provider\Model\ResourceModel\Provider\CollectionFactory
-     */
-    protected $providerCollectionFactory;
-
-    /**
-     * @var array
+     * @var
      */
     protected $loadedData;
+
+    /**
+     * @var DataPersistorInterface
+     */
+    private $dataPersistor;
 
     /**
      * @var StoreManagerInterface
@@ -28,16 +32,17 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     protected $storeManager;
 
 
-    protected $dataPersistor;
+    public $collection;
+
 
     /**
      * DataProvider constructor.
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param \Elogic\Provider\Model\ResourceModel\Provider\CollectionFactory $providerCollectionFactory
-     * @param DataPersistorInterface $dataPersistor
+     * @param CollectionFactory $collectionFactory
      * @param StoreManagerInterface $storeManager
+     * @param DataPersistorInterface $dataPersistor
      * @param array $meta
      * @param array $data
      */
@@ -45,22 +50,25 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        \Elogic\Provider\Model\ResourceModel\Provider\CollectionFactory $providerCollectionFactory,
-        DataPersistorInterface $dataPersistor,
+        CollectionFactory $collectionFactory,
+
         StoreManagerInterface $storeManager,
+        DataPersistorInterface $dataPersistor,
         array $meta = [],
         array $data = []
     ) {
-        $this->collection = $providerCollectionFactory->create();
-        $this->dataPersistor = $dataPersistor;
+        $this->collection = $collectionFactory->create();
+
         $this->storeManager = $storeManager;
+        $this->dataPersistor = $dataPersistor;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
-
     /**
+     * Get data
+     *
      * @return array
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @noinspection PhpMissingReturnTypeInspection
      */
     public function getData()
     {
@@ -70,15 +78,12 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $items = $this->collection->getItems();
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
-
-
-            if($model->getFilesubmission()) {
-                $m['uploader'][0]['name'] = $model->getFilesubmission();
-                $m['uploader'][0]['url'] = $this->getMediaUrl().$model->getFilesubmission();
+            if ($model->getImage()) {
+                $m['image'][0]['name'] = $model->getImage();
+                $m['image'][0]['url'] = $this->getMediaUrl() . $model->getImage();
                 $fullData = $this->loadedData;
                 $this->loadedData[$model->getId()] = array_merge($fullData[$model->getId()], $m);
             }
-
         }
         $data = $this->dataPersistor->get('elogic_provider_provider');
 
@@ -92,16 +97,13 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         return $this->loadedData;
     }
 
-
     /**
-     * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @noinspection PhpMissingReturnTypeInspection
      */
     public function getMediaUrl()
     {
         $mediaUrl = $this->storeManager->getStore()
-                ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'provider/';
-
+                ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'elogic_provider/tmp/feature/';
         return $mediaUrl;
     }
 }

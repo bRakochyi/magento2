@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Setup\Patch\Data;
 
 use Magento\Catalog\Model\Product;
@@ -13,22 +16,26 @@ use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 use Elogic\Provider\Model\Attribute\Source\ProviderAttr;
 
 /**
- * Class InstallData
+ * Class InstallData for attribute
+ *
  * @package Elogic\Provider\Setup\Patch\Data
  */
 class InstallData implements DataPatchInterface, PatchRevertableInterface
 {
+    /**
+     * Constant's code for attribute
+     */
     const PRODUCT_ATTRIBUTE = 'providers_category';
 
     /**
      * @var ModuleDataSetupInterface
      */
-    private $moduleDataSetup;
+    protected $moduleDataSetup;
+
     /**
      * @var EavSetupFactory
      */
-    private $eavSetupFactory;
-
+    protected $eavSetupFactory;
 
     /**
      * InstallData constructor.
@@ -42,7 +49,6 @@ class InstallData implements DataPatchInterface, PatchRevertableInterface
         $this->moduleDataSetup = $moduleDataSetup;
         $this->eavSetupFactory = $eavSetupFactory;
     }
-
 
     /**
      * @return void
@@ -58,38 +64,35 @@ class InstallData implements DataPatchInterface, PatchRevertableInterface
             Product::ENTITY,
             self::PRODUCT_ATTRIBUTE,
             [
-                'type' => 'varchar',
-                'label' => 'Providers Category',
+                'group' => 'Product Details',
+                'type' => 'int',
+                'backend' => '',
+                'frontend' => '',
+                'label' => 'Providers Category', /* label of attribute*/
                 'input' => 'select',
-                'source' => ProviderAttr::class,
-                'frontend' => \Elogic\Provider\Model\Attribute\Frontend\ProviderAttr::class,
-                'required' => false,
-                'backend' => ArrayBackend::class,
-                'sort_order' => '30',
-                'global' => ScopedAttributeInterface::SCOPE_STORE,
-                'default' => null,
+                'class' => '',
+                'source' => 'Elogic\Provider\Model\Attribute\Source\ProviderAttr',
+                /* Source of select type custom attribute options*/
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
                 'visible' => true,
-                'user_defined' => true,
+                'required' => false,
+                'user_defined' => false,
+                'default' => '',
                 'searchable' => false,
                 'filterable' => false,
                 'comparable' => false,
                 'visible_on_front' => false,
-                'unique' => false,
-                'apply_to' => '',
-                'group' => 'General',
                 'used_in_product_listing' => true,
-                'is_used_in_grid' => false,
-                'is_visible_in_grid' => false,
-                'is_filterable_in_grid' => false,
-                'option' => ''
+                'unique' => false
             ]
         );
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
-
-
+    /**
+     * Remove attribute
+     */
     public function revert()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
@@ -100,7 +103,6 @@ class InstallData implements DataPatchInterface, PatchRevertableInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
-
     /**
      * @return array
      */
@@ -108,7 +110,6 @@ class InstallData implements DataPatchInterface, PatchRevertableInterface
     {
         return [];
     }
-
 
     /**
      * @return array

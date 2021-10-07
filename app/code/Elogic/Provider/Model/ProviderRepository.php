@@ -1,160 +1,96 @@
 <?php
-
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Model;
 
-use Elogic\Provider\Api\ProviderRepositoryInterface;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
-use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\ValidatorException;
+use Elogic\Provider\Model\ResourceModel\Provider as ResourceProvider;
+use Elogic\Provider\Api\Data\ProviderInterface;
+use Elogic\Provider\Api\ProviderRepositoryInterface;
 
+/**
+ * Class ProviderRepository
+ * @package Elogic\Provider\Model
+ */
 class ProviderRepository implements ProviderRepositoryInterface
 {
     /**
-     * @var \Elogic\Provider\Model\ProviderFactory
+     * @var ResourceProvider
+     */
+    protected $resource;
+
+    /**
+     * @var ProviderFactory
      */
     protected $providerFactory;
 
-
-    /**
-     * @var \Elogic\Provider\Model\ResourceModel\Provider
-     */
-    protected $providerResourceModel;
-
-
-    /**
-     * @var \Elogic\Provider\Model\ResourceModel\Provider\CollectionFactory
-     */
-    protected $providerCollectionFactory;
-
-
-    /**
-     * @var CollectionProcessorInterface
-     */
-    protected $collectionProcessor;
-
-
-    /**
-     * @var SearchResultsInterface
-     */
-    protected $searchResultsFactory;
-
-
     /**
      * ProviderRepository constructor.
-     * @param \Elogic\Provider\Model\ProviderFactory $providerFactory
-     * @param ResourceModel\Provider $providerResourceModel
-     * @param ResourceModel\Provider\CollectionFactory $providerCollectionFactory
-     * @param CollectionProcessorInterface $collectionProcessor
-     * @param SearchResultsInterface $searchResultsFactory
+     * @param ResourceProvider $resource
+     * @param ProviderFactory $providerFactory
      */
     public function __construct(
-        \Elogic\Provider\Model\ProviderFactory $providerFactory,
-        \Elogic\Provider\Model\ResourceModel\Provider $providerResourceModel,
-        \Elogic\Provider\Model\ResourceModel\Provider\CollectionFactory $providerCollectionFactory,
-        \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface $collectionProcessor,
-        \Magento\Framework\Api\SearchResultsInterface $searchResultsFactory
+        ResourceProvider $resource,
+        ProviderFactory $providerFactory
     ) {
         $this->providerFactory = $providerFactory;
-        $this->providerResourceModel = $providerResourceModel;
-        $this->providerCollectionFactory = $providerCollectionFactory;
-        $this->collectionProcessor = $collectionProcessor;
-        $this->searchResultsFactory = $searchResultsFactory;
+        $this->resource = $resource;
     }
 
+    /** @noinspection PhpMissingReturnTypeInspection */
+    public function get($postId)
+    {
+        $provider = $this->providerFactory->create();
 
-    /**
-     * @param \Elogic\Provider\Api\Data\ProviderInterface|Provider $model
-     * @return \Elogic\Provider\Api\Data\ProviderInterface|Provider|ResourceModel\Provider
-     * @throws CouldNotSaveException
-     */
-    public function save($model)
+
+        $provider->load($postId);
+        if (!$provider->getId()) {
+            throw new NoSuchEntityException(__('Faq with id "%1" does not exist.', $postId));
+        }
+
+        return $provider;
+    }
+
+    /** @noinspection PhpMissingReturnTypeInspection */
+    public function delete(ProviderInterface $provider)
     {
         try {
-            return $this->providerResourceModel->save($model);
-        } catch (\Exception $e) {
-            throw new CouldNotSaveException(__("Sorry. I cannot save your provider."));
+            $this->resource->delete($provider);
+        } catch (\Exception $exception) {
+            /** @noinspection PhpUndefinedClassInspection */
+            throw new CouldNotDeleteException(__(
+                'Could not delete the Faq: %1',
+                $exception->getMessage()
+            ));
         }
+        return true;
     }
 
-
     /**
-     * @param \Elogic\Provider\Api\Data\ProviderInterface|Provider $model
+     * @param $postId
      * @return bool
-     * @throws CouldNotDeleteException
      */
-    public function delete($model)
+    public function deleteById($postId)
+    {
+        /** @noinspection PhpUnhandledExceptionInspection */
+        /** @noinspection PhpParamsInspection */
+        return $this->delete($this->get($postId));
+    }
+
+    /** @noinspection PhpMissingReturnTypeInspection */
+    public function save(ProviderInterface $provider)
     {
         try {
-            $this->providerResourceModel->delete($model);
-            return true;
-        } catch (\Exception $e) {
-            throw new CouldNotDeleteException(__("Sorry. I cannot delete your provider."));
+            /** @noinspection PhpParamsInspection */
+            $this->resource->save($provider);
+        } catch (\Exception $exception) {
+            throw new CouldNotSaveException(__($exception->getMessage()));
         }
-    }
-
-
-    /**
-     * @param int $id
-     * @return bool
-     * @throws CouldNotDeleteException
-     */
-    public function deleteById($id)
-    {
-        try {
-            $this->providerResourceModel->delete($this->getById($id));
-
-            return true;
-        } catch (\Exception $e) {
-            throw new CouldNotDeleteException(__("Sorry. I cannot delete your provider."));
-        }
-    }
-
-
-    /**
-     * @param int $id
-     * @return \Elogic\Provider\Api\Data\ProviderInterface|Provider
-     * @throws NoSuchEntityException
-     */
-    public function getById($id)
-    {
-        try {
-            $model = $this->providerFactory->create();
-            $this->providerResourceModel->load($model, $id);
-
-            return $model;
-        } catch (\Exception $e) {
-            throw new NoSuchEntityException(__("Sorry. No provider with id."));
-        }
-    }
-
-
-    /**
-     * @param \Magento\Framework\Api\SearchCriteria $searchCriteria
-     * @return \Magento\Framework\Api\SearchCriteriaInterface
-     */
-    public function getList($searchCriteria)
-    {
-        $collection = $this->providerCollectionFactory->create();
-
-        $this->collectionProcessor->process($searchCriteria, $collection);
-
-        $searchResult = $this->searchResultsFactory->create();
-
-        $searchResult->setSearchCriteria($searchCriteria)
-            ->setTotalCount($collection->getSize())
-            ->setItems($collection->getItems());
-
-        return $searchResult;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getEmptyModel()
-    {
-        return $this->providerFactory->create();
+        return $provider;
     }
 }

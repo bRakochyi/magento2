@@ -1,41 +1,55 @@
 <?php
-
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
+
+use Exception;
+use Elogic\Provider\Model\ImageUploader;
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+
 /**
  * Class Uploader
  * @package Elogic\Provider\Controller\Adminhtml\Test
  */
-class Uploader extends \Magento\Backend\App\Action
+class Uploader extends Action implements HttpPostActionInterface
 {
     /**
-     * @var \Elogic\Provider\Model\ImageUploader
+     * Image uploader
+     *
+     * @var ImageUploader
      */
     public $imageUploader;
 
-
     /**
-     * Uploader constructor.
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Elogic\Provider\Model\ImageUploader $imageUploader
+     * Upload constructor.
+     *
+     * @param Context $context
+     * @param ImageUploader $imageUploader
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Elogic\Provider\Model\ImageUploader $imageUploader
+        Context $context,
+        ImageUploader $imageUploader
     ) {
         parent::__construct($context);
         $this->imageUploader = $imageUploader;
     }
-
-
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
+     * Upload file controller action
+     *
+     * @return ResultInterface
+     * @noinspection PhpMissingReturnTypeInspection
      */
     public function execute()
     {
         try {
-            $result = $this->imageUploader->saveFileToTmpDir('logo');
+            $result = $this->imageUploader->saveFileToTmpDir('image');
             $result['cookie'] = [
                 'name' => $this->_getSession()->getName(),
                 'value' => $this->_getSession()->getSessionId(),
@@ -43,7 +57,7 @@ class Uploader extends \Magento\Backend\App\Action
                 'path' => $this->_getSession()->getCookiePath(),
                 'domain' => $this->_getSession()->getCookieDomain(),
             ];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $result = ['error' => $e->getMessage(), 'errorcode' => $e->getCode()];
         }
         return $this->resultFactory->create(ResultFactory::TYPE_JSON)->setData($result);

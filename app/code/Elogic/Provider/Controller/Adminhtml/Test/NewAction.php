@@ -1,48 +1,46 @@
 <?php
-
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
-use Elogic\Provider\Model\Provider;
 use Magento\Backend\App\Action\Context;
-use Elogic\Provider\Model\ProviderFactory;
+use Magento\Backend\Model\View\Result\ForwardFactory;
+use Magento\Framework\Controller\ResultInterface;
 
 /**
  * Class NewAction
  * @package Elogic\Provider\Controller\Adminhtml\Test
  */
-class NewAction extends \Magento\Backend\App\Action
+class NewAction extends Provider
 {
     /**
-     * @var \Elogic\Provider\Model\ProviderFactory
+     * @var ForwardFactory
      */
-    protected $providerFactory;
+    protected $resultForwardFactory;
 
-
-
+    /**
+     * NewAction constructor.
+     * @param Context $context
+     * @param ForwardFactory $resultForwardFactory
+     */
     public function __construct(
         Context $context,
-        \Elogic\Provider\Model\ProviderFactory $providerFactory
-    )
-    {
-        $this->providerFactory = $providerFactory;
+        ForwardFactory $resultForwardFactory
+    ) {
+        $this->resultForwardFactory = $resultForwardFactory;
         parent::__construct($context);
     }
 
     /**
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface
-     * @throws \Exception
+     * New action
+     *
+     * @return ResultInterface
      */
     public function execute()
     {
-        $this->_view->loadLayout();
-        $this->_view->renderLayout();
-
-        $providerData = $this->getRequest()->getParam('provider');
-        if (is_array($providerData)) {
-            $provider = $this->providerFactory->create(Provider::class);
-            $provider->setData($providerData)->save();
-            $resultRedirect = $this->resultRedirectFactory->create();
-            return $resultRedirect->setPath('*/*/index');
-        }
+        $resultForward = $this->resultForwardFactory->create();
+        return $resultForward->forward('edit');
     }
 }

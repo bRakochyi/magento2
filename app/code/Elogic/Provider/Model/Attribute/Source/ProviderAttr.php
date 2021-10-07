@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Model\Attribute\Source;
 
 use Elogic\Provider\Model\ResourceModel\Provider\CollectionFactory as ProviderCollectionFactory;
@@ -8,17 +11,16 @@ use Magento\Eav\Model\Entity\Attribute\Source\SourceInterface;
 use Magento\Framework\Data\OptionSourceInterface;
 
 /**
- * Class ProviderAttr
+ * Class ProviderAttr, source model for attribute
+ *
  * @package Elogic\Provider\Model\Attribute\Source
  */
 class ProviderAttr extends AbstractSource implements OptionSourceInterface, SourceInterface
 {
-
     /**
      * @var ProviderCollectionFactory
      */
-    private $providerCollectionFactory;
-
+    protected $providerCollectionFactory;
 
     /**
      * ProviderAttr constructor.
@@ -30,8 +32,8 @@ class ProviderAttr extends AbstractSource implements OptionSourceInterface, Sour
         $this->providerCollectionFactory = $providerCollectionFactory;
     }
 
-
     /**
+     * Get all options
      * @return array
      */
     public function getAllOptions(): array
@@ -42,8 +44,8 @@ class ProviderAttr extends AbstractSource implements OptionSourceInterface, Sour
 
         foreach ($collection as $category) {
             $options[] = [
-                'value' => $category->getId(),
-                'label' => $category->getName() . ' (ID:' . $category->getId() . ')'
+                'value' => $category->getPostId(),
+                'label' => $category->getName() . ' (ID:' . $category->getPostId() . ')'
             ];
         }
         return $options;

@@ -1,7 +1,9 @@
 <?php
-
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Api;
-
 /**
  * Interface ProviderRepositoryInterface
  * @package Elogic\Provider\Api
@@ -9,38 +11,38 @@ namespace Elogic\Provider\Api;
 interface ProviderRepositoryInterface
 {
     /**
-     * @param \Elogic\Provider\Api\Data\ProviderInterface|\Elogic\Provider\Model\Provider $model
-     * @return \Elogic\Provider\Api\Data\ProviderInterface|\Elogic\Provider\Model\Provider mixed
+     * @param \Elogic\Provider\Api\Data\ProviderInterface $provider
+     * @return \Elogic\Provider\Api\Data\ProviderInterface
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
+     * @since 100.1.0
+     * @noinspection PhpMissingReturnTypeInspection
      */
-    public function save($model);
-
+    public function save(\Elogic\Provider\Api\Data\ProviderInterface $provider);
 
     /**
-     * @param \Elogic\Provider\Api\Data\ProviderInterface|\Elogic\Provider\Model\Provider $model
-     * @return true
-     * @throw CouldNotDeleteException
+     * @param int $postId
+     * @return \Elogic\Provider\Api\Data\ProviderInterface
+     * @throws \Elogic\Provider\Api\Data\ProviderInterface
+     * @since 100.1.0
+     * @noinspection PhpMissingReturnTypeInspection
      */
-    public function delete($model);
-
+    public function get($postId);
 
     /**
-     * @param integer $id
-     * @return \Elogic\Provider\Api\Data\ProviderInterface|\Elogic\Provider\Model\Provider
+     * @param \Elogic\Provider\Api\Data\ProviderInterface $provider
+     * @return bool
+     * @throws \Elogic\Provider\Api\Data\ProviderInterface
+     * @since 100.1.0
+     * @noinspection PhpMissingReturnTypeInspection
      */
-    public function getById($id);
-
+    public function delete(\Elogic\Provider\Api\Data\ProviderInterface $provider);
 
     /**
-     * @param integer $id
-     * @return true
-     * @throw CouldNotDeleteException
+     * @param int $postId
+     * @return bool
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
+     * @since 100.1.0
+     * @noinspection PhpMissingReturnTypeInspection
      */
-    public function deleteById($id);
-
-
-    /**
-     * @param \Magento\Framework\Api\SearchCriteria $searchCriteria
-     * @return \Magento\Framework\Api\SearchCriteriaInterface
-     */
-    public function getList($searchCriteria);
+    public function deleteById($postId);
 }

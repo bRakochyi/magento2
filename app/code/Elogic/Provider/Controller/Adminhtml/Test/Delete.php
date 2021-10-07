@@ -1,57 +1,56 @@
 <?php
-
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace Elogic\Provider\Controller\Adminhtml\Test;
 
-use Elogic\Provider\Model\Provider;
 use Magento\Backend\App\Action\Context;
+use Elogic\Provider\Model\Provider as Provider;
+use Magento\Framework\Controller\ResultInterface;
 use Elogic\Provider\Api\ProviderRepositoryInterface;
 
 /**
  * Class Delete
  * @package Elogic\Provider\Controller\Adminhtml\Test
  */
-class Delete extends \Magento\Backend\App\Action
+class Delete extends \Elogic\Provider\Controller\Adminhtml\Test\Provider
 {
-
+    /**
+     * @var ProviderRepositoryInterface
+     */
     protected $providerRepositoryInterface;
 
-
+    /**
+     * Delete constructor.
+     * @param Context $context
+     * @param ProviderRepositoryInterface $providerRepositoryInterface
+     */
     public function __construct(
         Context $context,
-        \Elogic\Provider\Api\ProviderRepositoryInterface $providerRepositoryInterface
-    )
-    {
-        parent::__construct($context);
+        ProviderRepositoryInterface $providerRepositoryInterface
+    ) {
         $this->providerRepositoryInterface = $providerRepositoryInterface;
+        parent::__construct($context);
     }
 
+
+    /** @noinspection PhpMissingReturnTypeInspection */
     public function execute()
     {
-        $id = $this->getRequest()->getParam('id');
-        if (!($provider = $this->providerRepositoryInterface->create(Provider::class)->load($id))) {
-            $this->messageManager->addError(__('Unable to proceed. Please, try again.'));
-            $resultRedirect = $this->resultRedirectFactory->create();
-            return $resultRedirect->setPath('*/*/index', ['_current' => true]);
-        }
-        try {
-            $provider->delete();
-            $this->messageManager->addSuccess(__('Your provider has been deleted !'));
-        } catch (Exception $e) {
-            $this->messageManager->addError(__('Error while trying to delete provider: '));
-            $resultRedirect = $this->resultRedirectFactory->create();
-            return $resultRedirect->setPath('*/*/index', ['_current' => true]);
-        }
-
         $resultRedirect = $this->resultRedirectFactory->create();
-        return $resultRedirect->setPath('*/*/index', ['_current' => true]);
-    }
-
-
-    /**
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Elogic_Provider::delete');
+        $id = $this->getRequest()->getParam('post_id');
+        if ($id) {
+            try {
+                $this->providerRepositoryInterface->deleteById($id);
+                $this->messageManager->addSuccessMessage(__('You deleted the Provider.'));
+                return $resultRedirect->setPath('*/*/');
+            } catch (\Exception $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+                return $resultRedirect->setPath('*/*/edit', ['post_id' => $id]);
+            }
+        }
+        $this->messageManager->addErrorMessage(__('We can\'t find a Provider to delete.'));
+        return $resultRedirect->setPath('*/*/');
     }
 }

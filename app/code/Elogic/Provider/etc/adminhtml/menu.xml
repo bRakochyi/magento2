@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Bohdan Rakochyi, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Elogic_Provider" title="Providers" module="Elogic_Provider" sortOrder="20" dependsOnModule="Elogic_Provider" resource="Elogic_Provider::provider"/>
-        <add id="Elogic_Provider::index" title="Providers" module="Elogic_Provider" action="provider/test/index" parent="Elogic_Provider" sortOrder="20" dependsOnModule="Elogic_Provider" resource="Elogic_Provider::index"/>
-        <add id="Elogic_Provider::create" title="Create" module="Elogic_Provider" sortOrder="40" parent="Elogic_Provider" action="providerMenu/create/index" resource="Elogic_Provider::create"/>
-        <add id="Elogic_Provider::delete" title="Delete" module="Elogic_Provider" sortOrder="50" parent="Elogic_Provider" action="providerMenu/delete/index" resource="Elogic_Provider::delete"/>
+        <add id="Elogic_Provider" title="Elogic Providers" module="Elogic_Provider" sortOrder="20" dependsOnModule="Elogic_Provider" resource="Elogic_Provider::provider"/>
+        <add id="Elogic_Provider::test" title="Provider" module="Elogic_Provider" action="provider/test/index" parent="Elogic_Provider" sortOrder="20" dependsOnModule="Elogic_Provider" resource="Elogic_Provider::provider"/>
     </menu>
 </config>
+
